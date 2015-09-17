@@ -1,3 +1,6 @@
+#author: Hongyi Zhang(andrew id: hongyiz)
+
+
 import sys
 import csv
 import datetime
@@ -26,7 +29,10 @@ try:
     	newDateTime = round(datetime.datetime.strptime(row[1], "%Y%m%d %H:%M:%S.%f"))
     	if curDateTime == None:
     		curDateTime = newDateTime
+        #if newDateTime != curDateTime, it means now we are sliding to the next window
     	if newDateTime != curDateTime:
+            #flag is the label, if this row's avg bid is lower than the next row, it will be labeled as False
+            #else it will be labeled as True
             flag = None
             if len(prevRow) != 0:
                 flag = float(prevRow[4]) < (bidSum / count)
@@ -47,6 +53,7 @@ try:
     		bidMax = bid
     	if bid < bidMin:
     		bidMin = bid
+    #print the remaining line after finishing scanning the file
     print prevRow[0] + "," + prevRow[1] + "," + prevRow[2] + "," + prevRow[3] + "," + prevRow[4] + "," + prevRow[5] + "," + str(None)
 finally:
     f.close()

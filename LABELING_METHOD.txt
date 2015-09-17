@@ -1,0 +1,20 @@
+#author: Hongyi Zhang(andrew id: hongyiz)
+
+My way of organizing the data is that:
+First define a window size（currently it's 10 minutes, but it can be easily changed).
+Then for each type of currency, I will merge the transactions within the window size into a new line,
+and in the new line I will add features of bid max, bid min, bid avg and spread avg computed from all 
+the transactions within this window.
+Label: If avg bid is lower than next window's(in another word, the future one), label
+		this line as true, else label this line as false.
+
+
+Column explanation:
+Column 1: currency type, ex. USDJPY
+Column 2: date time. Currently the merging window size is 10 minutes, but it can be easily changed.
+Column 3: bid Minimum. The Minimum bid value within this window.
+Column 4: bid Maximum. The Maximum bid value within this window.
+Column 5: bid average. The average bid value within this window.
+Column 6: spread average. The average spread value within this window.
+Column 7: label flag. If avg bid is lower than next window's(in another word, the future one), label
+		  this line as true, else label this line as false.
