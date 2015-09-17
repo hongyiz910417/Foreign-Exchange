@@ -1,6 +1,7 @@
 import sys
 import csv
 import datetime
+import glob
 
 #round datetime by 10 minutes, to floor
 def round(tm):
@@ -9,6 +10,9 @@ def round(tm):
                              microseconds=tm.microsecond)
 	rounded = tm - discard
 	return rounded
+def getFilenames(dir):
+	names = glob.glob(dir)
+	return sorted(names)
 
 filename = sys.argv[1]
 f = open(filename, 'rt');
