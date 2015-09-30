@@ -1,0 +1,13 @@
+package treenode;
+
+public class FeatureNode extends TreeNode {
+	private double splitPoint;
+
+	public double getSplitPoint() {
+		return splitPoint;
+	}
+
+	public void setSplitPoint(double splitPoint) {
+		this.splitPoint = splitPoint;
+	}
+}

@@ -1,0 +1,13 @@
+package driver;
+
+
+import decisionTree.DecisionTree;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		DecisionTree dt = new DecisionTree();
+		dt.buildTree("input");
+	}
+
+}

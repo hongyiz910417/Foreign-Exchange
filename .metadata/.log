@@ -1,0 +1,25 @@
+!SESSION 2015-09-28 20:37:02.682 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_71
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/d/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/d/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-09-28 20:39:34.915
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2015-09-28 20:39:43.374
+!MESSAGE Starting the AWS toolkit core plugin...
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2015-09-28 20:39:47.035
+!MESSAGE No profile found: default
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2015-09-28 20:39:47.064
+!MESSAGE Monitoring content of /Users/d/.aws/credentials
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2015-09-28 20:39:47.067
+!MESSAGE AWS toolkit core plugin initialized after 3693 milliseconds.
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2015-09-28 20:39:47.074
+!MESSAGE The current accountId is not found in the system. Switching to the default account.

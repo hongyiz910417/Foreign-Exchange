@@ -1,0 +1,5 @@
+package treenode;
+
+public class FeatureNode extends TreeNode {
+
+}

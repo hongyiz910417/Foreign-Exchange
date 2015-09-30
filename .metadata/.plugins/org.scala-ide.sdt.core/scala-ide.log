@@ -1,0 +1,2 @@
+2015-09-28 20:39:43,702 ERROR [Worker-3] - System.err - log4j:WARN No appenders could be found for logger (com.amazonaws.internal.config.InternalConfig).
+2015-09-28 20:39:43,703 ERROR [Worker-3] - System.err - log4j:WARN Please initialize the log4j system properly.

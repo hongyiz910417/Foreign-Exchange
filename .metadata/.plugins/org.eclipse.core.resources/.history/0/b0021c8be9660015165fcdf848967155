@@ -1,0 +1,149 @@
+package decisionTree;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import Utils.Util;
+import constants.Params;
+import measure.Measure;
+import measure.MeasureFactory;
+import measure.MeasureType;
+import treenode.FeatureNode;
+import treenode.LabelNode;
+import treenode.TreeNode;
+
+public class DecisionTree {
+	private TreeNode root;
+	private static final int DIVIDE_COUNT = 10;
+	
+	public void buildTree(String filename){
+		Measure measure = MeasureFactory.getMeasure(MeasureType.PLUS_MEASURE);
+		List<String> lines = Util.readfile(filename);
+		Queue<List<String>> lineQueue = new LinkedList<List<String>>();
+		Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
+		root = new FeatureNode(null, null, 0.0, 2);
+		nodeQueue.offer(root);
+		lineQueue.offer(lines);
+		while(!nodeQueue.isEmpty()){
+			TreeNode node = nodeQueue.poll();
+			List<String> nodeLines = lineQueue.poll();
+			FeatureNode featureNode = (FeatureNode)node;
+			int colIndex = featureNode.getColIndex();
+			double[] maxMin = getMaxMin(nodeLines, colIndex);
+			double delta = (maxMin[0] - maxMin[1]) / DIVIDE_COUNT;
+			double maxPerformance = 0;
+			double bestPoint = 0;
+			for(int i = 1; i < DIVIDE_COUNT; i++){
+				double splitPoint = maxMin[1] + delta * i;
+				double performance = measure.measureSplit(splitPoint, nodeLines
+						, colIndex);
+				if(performance > maxPerformance){
+					maxPerformance = performance;
+					bestPoint = splitPoint;
+				}
+			}
+			featureNode.setSplitPoint(bestPoint);
+			List[] lists = split(bestPoint, nodeLines, colIndex);
+			if(colIndex == Params.LABEL_INDEX - 1){
+				LabelNode left = new LabelNode(getLabel(lists[0]));
+				LabelNode right = new LabelNode(getLabel(lists[1]));
+				node.setLeft(left);
+				node.setRight(right);
+			}
+			else{
+				FeatureNode left = new FeatureNode(null, null, 0.0, colIndex + 1);
+				FeatureNode right = new FeatureNode(null, null, 0.0, colIndex + 1);
+				lineQueue.offer(lists[0]);
+				lineQueue.offer(lists[1]);
+				nodeQueue.offer(left);
+				nodeQueue.offer(right);
+			}
+		}
+	}
+	
+	public boolean searchInTree(String line){
+		String[] cols = line.split(",");
+		TreeNode node = root;
+		for(int i = 2; i < Params.LABEL_INDEX; i++){
+			double val = Double.parseDouble(cols[i]);
+			FeatureNode featureNode = (FeatureNode)node;
+			if(val < featureNode.getSplitPoint()){
+				node = node.getLeft();
+			}
+			else{
+				node = node.getRight();
+			}
+		}
+		LabelNode labelNode = (LabelNode)node;
+		return labelNode.isVal();
+	}
+	
+	public String toString(){
+		
+	}
+	
+	private String getString(TreeNode node, int level){
+		if(node instanceof LabelNode){
+			return node.toString();
+		}
+		else{
+			String s = "";
+			for(int i = 0; i < level; i++){
+				s += "\t";
+			}
+			s += node.toString() + "\n";
+			s += getString(node.getLeft(), level + 1) + "\n";
+			s += getString(node.getRight(), level + 1) + "\n";
+			return s;
+		}
+	}
+	
+	private List[] split(double splitPoint, List<String> lines, int colIndex){
+		List<String> list1 = new ArrayList<String>();
+		List<String> list2 = new ArrayList<String>();
+		for(String line : lines) {
+			String[] cols = line.split(",");
+		    double val = Double.parseDouble(cols[colIndex]);
+		    if(val < splitPoint){
+		    	list1.add(line);
+		    }
+		    else{
+		    	list2.add(line);
+		    }
+		}
+		List[] lists = new List[2];
+		lists[0] = list1;
+		lists[1] = list2;
+		return lists;
+	}
+	
+	private boolean getLabel(List<String> lines){
+		int trueCount = 0;
+		for(String line : lines) {
+			String[] cols = line.split(",");
+			boolean label = Boolean.parseBoolean(cols[Params.LABEL_INDEX]);
+			if(label){
+				trueCount++;
+			}
+		}
+		return trueCount > lines.size() / 2;
+	}
+	
+	private double[] getMaxMin(List<String> lines, int colIndex){
+		double[] results = new double[2]; // 0: max, 1: min
+		results[0] = 0;
+		results[1] = Integer.MAX_VALUE;
+	    for(String line : lines) {
+	       String[] cols = line.split(",");
+	       if(cols.length <= 4){
+	    	   System.out.println(line);
+	       }
+	       double val = Double.parseDouble(cols[colIndex]);
+	       results[0] = Math.max(results[0], val);
+	       results[1] = Math.min(results[1], val);
+	    }
+		return results;
+	}
+}

@@ -1,0 +1,18 @@
+package driver;
+
+import java.util.List;
+
+import decisionTree.DecisionTree;
+import Utils.util;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		List<String> lines = util.readfile("input");
+		DecisionTree dt = new DecisionTree();
+		double[] maxMin = dt.getMaxMin(lines, 4);
+		System.out.println(maxMin[0]);
+		System.out.println(maxMin[1]);
+	}
+
+}

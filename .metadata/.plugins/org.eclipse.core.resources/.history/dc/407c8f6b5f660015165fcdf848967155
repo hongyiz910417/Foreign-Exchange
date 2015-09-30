@@ -1,0 +1,5 @@
+package measure;
+
+public interface Measure {
+	public double measureSplit(double splitPoint, String filename, int col);
+}

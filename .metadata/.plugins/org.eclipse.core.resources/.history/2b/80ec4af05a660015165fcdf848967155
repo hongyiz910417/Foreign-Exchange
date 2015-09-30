@@ -1,0 +1,6 @@
+package constants;
+
+public class Params {
+	public static final int LABEL_INDEX = 6;
+	public static final String NONE_STR = "None";
+}

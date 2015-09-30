@@ -1,2 +1,4 @@
 *.csv
 *.zip
+DecisionTree/bin/*
+DecisionTree/.*

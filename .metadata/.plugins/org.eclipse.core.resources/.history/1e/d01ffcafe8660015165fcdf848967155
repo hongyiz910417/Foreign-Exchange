@@ -1,0 +1,15 @@
+package driver;
+
+import java.util.List;
+
+import decisionTree.DecisionTree;
+import Utils.util;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		DecisionTree dt = new DecisionTree();
+		dt.buildTree("input");
+	}
+
+}
