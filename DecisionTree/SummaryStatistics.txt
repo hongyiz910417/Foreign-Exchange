@@ -5,13 +5,12 @@ DataSet:
 Training set: USDJPY-2010-06 ~ USDJPY-2010-09
 Test set: USDJPY-2010-10
 
-Correctness rate:
-54.678
+Random Forest Correctness rate:
+56.742
 
-Node splitting algorithm:
-For each splitting, I used a measurement called Percentage Measurement to do the splitting.
-First I will calculate the percentage of true labels and false labels in both splited sets.
-If for s1(the left side set after splitting) the percentage of true labels is larger than false 
-labels, I will add the percentage of true labels in s1 and the percentage of false labels in s2 
-as the performance. If for s1 the percentage of false labels is larger than true labels, I will add the 
-percentage of false labels in s1 and the percentage of true labels in s2 as the performance.
+The forest contains 5 trees, the statistics are as following:
+tree 0: 51.432
+tree 1: 52.876
+tree 2: 52.845
+tree 3: 55.672
+tree 4: 53.649

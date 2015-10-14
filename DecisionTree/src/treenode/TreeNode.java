@@ -3,6 +3,7 @@ package treenode;
 public abstract class TreeNode {
 	protected TreeNode left;
 	protected TreeNode right;
+	protected int level;
 	
 	public TreeNode getLeft() {
 		return left;
@@ -15,6 +16,12 @@ public abstract class TreeNode {
 	}
 	public void setRight(TreeNode right) {
 		this.right = right;
+	}
+	public void setLevel(int level){
+		this.level = level;
+	}
+	public int getLevel(){
+		return level;
 	}
 	
 	public abstract String toString();

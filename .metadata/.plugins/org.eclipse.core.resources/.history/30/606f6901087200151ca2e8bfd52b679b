@@ -1,0 +1,51 @@
+package randomForrest;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import decisionTree.DecisionTree;
+import Utils.Util;
+import treenode.TreeNode;
+import validation.Validator;
+
+public class RandomForest {
+	private List<TreeNode> trees;
+	
+	private int n;
+	
+	private String filename;
+	
+	public RandomForest(String filename, int n){
+		this.filename = filename;
+		this.n = n;
+	}
+	
+	public void buildForest(){
+		for(int i = 0; i < n; i++){
+			List<String>[] lists = getDataSets();
+			
+			DecisionTree dt = new DecisionTree();
+			Validator validator = new Validator();
+			dt.buildTree("input");
+		}
+	}
+	
+	/*
+	 * only 
+	 */
+	private List<String>[] getDataSets(){
+		List<String> contents = Util.readfile(filename);
+		List<String> training = new ArrayList<String>();
+		List<String> test = new ArrayList<String>();
+		Random random = new Random();
+		for(int i = 0; i < contents.size(); i += 3){
+			int testline = random.nextInt() % 3;
+			test.add(contents.get(testline + i));
+			for(int j = 0; j < 3; j++){
+				if(testline != j) training.add(contents.get(i + j));
+			}
+		}
+		return new List[]{training, test};
+	}
+}

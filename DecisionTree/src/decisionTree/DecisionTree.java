@@ -24,12 +24,12 @@ public class DecisionTree {
 	private TreeNode root;
 	private static final int DIVIDE_COUNT = 10;
 	
-	public void buildTree(String filename){
+	public void buildTree(List<String> lines, int[] features){
 		Measure measure = MeasureFactory.getMeasure(MeasureType.PERCENTANGE_MEASURE);
-		List<String> lines = Util.readfile(filename);
 		Queue<List<String>> lineQueue = new LinkedList<List<String>>();
 		Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
-		root = new FeatureNode(null, null, 0.0, 2);
+		root = new FeatureNode(null, null, 0.0, features[0]);
+		root.setLevel(0);
 		nodeQueue.offer(root);
 		lineQueue.offer(lines);
 		/*
@@ -41,6 +41,7 @@ public class DecisionTree {
 			List<String> nodeLines = lineQueue.poll();
 			FeatureNode featureNode = (FeatureNode)node;
 			int colIndex = featureNode.getColIndex();
+			int nodelevel = featureNode.getLevel();
 			double[] maxMin = getMaxMin(nodeLines, colIndex);
 			double delta = (maxMin[0] - maxMin[1]) / DIVIDE_COUNT;
 			double maxPerformance = 0;
@@ -63,15 +64,18 @@ public class DecisionTree {
 			 */
 			featureNode.setSplitPoint(bestPoint);
 			List[] lists = split(bestPoint, nodeLines, colIndex);
-			if(colIndex == Params.LABEL_INDEX - 1){
+			if(nodelevel == features.length - 1){
 				LabelNode left = new LabelNode(getLabel(lists[0]));
 				LabelNode right = new LabelNode(getLabel(lists[1]));
 				node.setLeft(left);
 				node.setRight(right);
 			}
 			else{
-				FeatureNode left = new FeatureNode(null, null, 0.0, colIndex + 1);
-				FeatureNode right = new FeatureNode(null, null, 0.0, colIndex + 1);
+				int nextLevel = nodelevel + 1;
+				FeatureNode left = new FeatureNode(null, null, 0.0, features[nextLevel]);
+				left.setLevel(nextLevel);
+				FeatureNode right = new FeatureNode(null, null, 0.0, features[nextLevel]);
+				right.setLevel(nextLevel);
 				node.setLeft(left);
 				node.setRight(right);
 				lineQueue.offer(lists[0]);

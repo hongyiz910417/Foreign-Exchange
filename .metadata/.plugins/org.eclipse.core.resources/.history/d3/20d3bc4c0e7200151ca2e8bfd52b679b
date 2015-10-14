@@ -1,0 +1,83 @@
+package randomForrest;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import constants.Params;
+import decisionTree.DecisionTree;
+import Utils.Util;
+import treenode.TreeNode;
+import validation.Validator;
+
+public class RandomForest {
+	private List<DecisionTree> trees;
+	
+	private int n;
+	
+	private int[][] featureCombinations = {{2, 3}, {2, 4}, {2, 5}, {3, 4}, {3, 5}, {4, 5}};
+	
+	private double[] statistics;
+	
+	private String filename;
+	
+	public RandomForest(String filename, int n){
+		this.filename = filename;
+		this.n = n;
+		statistics = new double[n];
+		trees = new ArrayList<DecisionTree>();
+	}
+	
+	public void buildForest(){
+		for(int i = 0; i < n; i++){
+			List<String>[] lists = getDataSets();
+			List<String> training = lists[0];
+			List<String> test = lists[1];
+			DecisionTree dt = new DecisionTree();
+			dt.buildTree(training, getFeatures());
+			double result = Validator.validateTree(test, dt);
+			statistics[i] = result;
+		}
+		System.out.println("building forest done!");
+		System.out.println("building statistics: ");
+		for(int i = 0; i < n; i++){
+			StringBuilder sb = new StringBuilder();
+			sb.append("tree").append(i).append(" correctness: ");
+			sb.append(statistics[i]);
+			System.out.println(sb.toString());
+		}
+	}
+	
+	public boolean predict(String line){
+		int trueCount = 0;
+		for(DecisionTree dt : trees){
+			if(dt.searchInTree(line)) trueCount++;
+		}
+		return trueCount > trees.size() / 2;
+	}
+	
+	/*
+	 * randomly select 2/3 of the contents as training data, the rest as 
+	 * testing data
+	 */
+	private List<String>[] getDataSets(){
+		List<String> contents = Util.readfile(filename);
+		List<String> training = new ArrayList<String>();
+		List<String> test = new ArrayList<String>();
+		Random random = new Random();
+		for(int i = 0; i < contents.size(); i += 3){
+			int testline = random.nextInt() % 3;
+			test.add(contents.get(testline + i));
+			for(int j = 0; j < 3; j++){
+				if(testline != j) training.add(contents.get(i + j));
+			}
+		}
+		return new List[]{training, test};
+	}
+	
+	private int[] getFeatures(){
+		Random random = new Random();
+		int seed = random.nextInt() % featureCombinations.length;
+		return featureCombinations[seed];
+	}
+}
