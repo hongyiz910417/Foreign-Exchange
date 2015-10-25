@@ -3,19 +3,21 @@
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="treenode.TreeNode"/>
 <fullyQualifiedTypeName name="measure.MeasureFactory"/>
 <fullyQualifiedTypeName name="measure.MeasureType"/>
 <fullyQualifiedTypeName name="measure.Measure"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.util.Queue"/>
 <fullyQualifiedTypeName name="treenode.FeatureNode"/>
 <fullyQualifiedTypeName name="treenode.LabelNode"/>
 <fullyQualifiedTypeName name="Utils.util"/>
 <fullyQualifiedTypeName name="decisionTree.DecisionTree"/>
-<fullyQualifiedTypeName name="Utils.Util"/>
-<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="treenode.TreeNode"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="constants.Params"/>
 <fullyQualifiedTypeName name="validation.Validator"/>
+<fullyQualifiedTypeName name="Utils.Util"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="randomForrest.RandomForest"/>
 </qualifiedTypeNameHistroy>

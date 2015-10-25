@@ -1,5 +1,0 @@
-package measure;
-
-public enum MeasureType {
-	PLUS_MEASURE
-}

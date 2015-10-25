@@ -1,5 +1,0 @@
-package treenode;
-
-public class LabelNode extends TreeNode {
-
-}
