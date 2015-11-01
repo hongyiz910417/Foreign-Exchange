@@ -14,6 +14,5 @@ public class Driver {
 		RandomForest randomForest = new RandomForest("datadb", 5);
 		double correctness = Validator.validateForest(test, randomForest);
 		System.out.println("forest correctness: " + correctness);
-		Util.saveMetrics(correctness, "datadb");
 	}
 }

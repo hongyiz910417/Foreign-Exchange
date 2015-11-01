@@ -10,7 +10,6 @@ import com.datastax.driver.core.Session;
 
 import decisionTree.DecisionTree;
 import Utils.Util;
-import treenode.TreeNode;
 import validation.Validator;
 
 public class RandomForest {
@@ -25,10 +24,10 @@ public class RandomForest {
 	
 	private double[] statistics;
 	
-	private String dbname;
+	private String filename;
 	
-	public RandomForest(String dbname, int n){
-		this.dbname = dbname;
+	public RandomForest(String filename, int n){
+		this.filename = filename;
 		this.n = n;
 		statistics = new double[n];
 		trees = new ArrayList<DecisionTree>();
@@ -58,6 +57,18 @@ public class RandomForest {
 		}
 	}
 	
+	/**
+	 * function for storing the tree into the database, each node is stored as a row in
+	 * database, and each node is assigned an unique UUID, which is used by its parent node
+	 * to track its children for rebuilding the tree from db.
+	 * @param db
+	 */
+	public void saveToDB(String db){
+		Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+		Session session = cluster.connect(db);
+		
+	}
+	
 	/*
 	 * predict according to the voting of all trees
 	 */
@@ -74,8 +85,7 @@ public class RandomForest {
 	 * testing data
 	 */
 	private List<String>[] getDataSets(){
-		//List<String> contents = Util.readfile(dbname);
-		List<String> contents = Util.readDB(dbname);
+		List<String> contents = Util.readfile(filename);
 		List<String> training = new ArrayList<String>();
 		List<String> test = new ArrayList<String>();
 		Random random = new Random();

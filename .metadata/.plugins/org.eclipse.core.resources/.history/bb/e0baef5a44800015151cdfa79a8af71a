@@ -27,8 +27,8 @@ public class RandomForest {
 	
 	private String dbname;
 	
-	public RandomForest(String dbname, int n){
-		this.dbname = dbname;
+	public RandomForest(String filename, int n){
+		this.dbname = filename;
 		this.n = n;
 		statistics = new double[n];
 		trees = new ArrayList<DecisionTree>();
@@ -74,8 +74,7 @@ public class RandomForest {
 	 * testing data
 	 */
 	private List<String>[] getDataSets(){
-		//List<String> contents = Util.readfile(dbname);
-		List<String> contents = Util.readDB(dbname);
+		List<String> contents = Util.readfile(dbname);
 		List<String> training = new ArrayList<String>();
 		List<String> test = new ArrayList<String>();
 		Random random = new Random();

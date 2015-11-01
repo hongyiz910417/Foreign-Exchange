@@ -36,20 +36,7 @@ public class Util {
 		ResultSet results = session.execute("SELECT * FROM " + Params.TRAINING_TABLE_NAME);
 		for (Row row : results) {
 			String line = row.getString("currency") + "," + row.getString("datetime") + "," + 
-							row.getString("bidMin") + "," + row.getString("bidMax") + "," + 
-							row.getString("bidAvg") + "," + row.getString("spreadAvg") + "," + 
-							row.getString("label");
-			lines.add(line);
+							row.getString("bidMin") + "," + 
 		}
-		cluster.close();
-		return lines;
-	}
-	
-	public static void saveMetrics(double performance, String db){
-		Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
-		Session session = cluster.connect(db);
-		session.execute("INSERT INTO " + Params.METRICS_TABLE_NAME 
-				+ " (performance) VALUES (" + performance + ")");
-		session.close();
 	}
 }

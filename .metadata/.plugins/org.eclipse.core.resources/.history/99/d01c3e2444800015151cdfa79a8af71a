@@ -10,10 +10,9 @@ import validation.Validator;
 public class Driver {
 
 	public static void main(String[] args) {
-		List<String> test = Util.readDB("datadb");
-		RandomForest randomForest = new RandomForest("datadb", 5);
+		List<String> test = Util.readfile("test");
+		RandomForest randomForest = new RandomForest("input", 5);
 		double correctness = Validator.validateForest(test, randomForest);
 		System.out.println("forest correctness: " + correctness);
-		Util.saveMetrics(correctness, "datadb");
 	}
 }

@@ -41,15 +41,6 @@ public class Util {
 							row.getString("label");
 			lines.add(line);
 		}
-		cluster.close();
 		return lines;
-	}
-	
-	public static void saveMetrics(double performance, String db){
-		Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
-		Session session = cluster.connect(db);
-		session.execute("INSERT INTO " + Params.METRICS_TABLE_NAME 
-				+ " (performance) VALUES (" + performance + ")");
-		session.close();
 	}
 }
