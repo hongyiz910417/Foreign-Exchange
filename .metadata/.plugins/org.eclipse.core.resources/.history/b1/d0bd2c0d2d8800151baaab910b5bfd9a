@@ -34,15 +34,6 @@ public class RandomForest {
 		trees = new ArrayList<DecisionTree>();
 	}
 	
-	public RandomForest(){
-		statistics = new double[n];
-		trees = new ArrayList<DecisionTree>();
-	}
-	
-	public void addTree(DecisionTree dt){
-		trees.add(dt);
-	}
-	
 	public void buildForest(){
 		/*
 		 * build the forest
