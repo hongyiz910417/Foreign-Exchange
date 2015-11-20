@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="measure.MeasureFactory"/>
 <fullyQualifiedTypeName name="measure.MeasureType"/>
 <fullyQualifiedTypeName name="measure.Measure"/>
@@ -11,13 +10,32 @@
 <fullyQualifiedTypeName name="treenode.FeatureNode"/>
 <fullyQualifiedTypeName name="treenode.LabelNode"/>
 <fullyQualifiedTypeName name="Utils.util"/>
-<fullyQualifiedTypeName name="decisionTree.DecisionTree"/>
-<fullyQualifiedTypeName name="treenode.TreeNode"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="constants.Params"/>
 <fullyQualifiedTypeName name="validation.Validator"/>
 <fullyQualifiedTypeName name="Utils.Util"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapreduce.Mapper"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="decisionTree.DecisionTree"/>
+<fullyQualifiedTypeName name="treenode.TreeNode"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="com.google.gson.GsonBuilder"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapreduce.Reducer"/>
 <fullyQualifiedTypeName name="randomForrest.RandomForest"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.io.LongWritable"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.io.Text"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapred.FileInputFormat"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapreduce.lib.input.FileInputFormat"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapred.JobContext"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.conf.Configuration"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="com.datastax.driver.core.Row"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapred.TextOutputFormat"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapred.jobcontrol.Job"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapreduce.Job"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.mapred.FileOutputFormat"/>
+<fullyQualifiedTypeName name="org.apache.hadoop.fs.Path"/>
 </qualifiedTypeNameHistroy>
