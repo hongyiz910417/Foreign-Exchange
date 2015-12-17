@@ -17,4 +17,7 @@
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 		</list>
 	</section>
+	<section name="EditorSelectionDialog">
+		<item value="false" key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL"/>
+	</section>
 </section>
